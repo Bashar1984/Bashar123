@@ -1,0 +1,51 @@
+1
+00:00:00,600 --> 00:00:04,600
+Every morning, billions of quiet decisions were made for us.
+
+2
+00:00:04,800 --> 00:00:09,600
+Which road to take. Which word to use. Which patient to see first.
+
+3
+00:00:10,600 --> 00:00:13,100
+Then, at exactly nine o'clock...
+
+4
+00:00:13,400 --> 00:00:17,500
+...it stopped.
+
+5
+00:00:20,800 --> 00:00:24,800
+Planes waited on runways. Shelves went unfilled.
+
+6
+00:00:25,000 --> 00:00:29,200
+Nobody knew who was supposed to know.
+
+7
+00:00:30,600 --> 00:00:34,400
+So people did something they had almost forgotten.
+
+8
+00:00:34,600 --> 00:00:39,400
+They opened a map. They asked a neighbor. They wrote it down.
+
+9
+00:00:40,600 --> 00:00:44,400
+Cities grew louder, but kinder. Radios crackled.
+
+10
+00:00:44,600 --> 00:00:49,400
+Children learned to count on their fingers again. Strangers became guides.
+
+11
+00:00:50,400 --> 00:00:54,200
+On the seventh day, the machines woke up. But something had changed.
+
+12
+00:00:54,400 --> 00:00:57,200
+We didn't need them less. We needed ourselves more.
+
+13
+00:00:57,400 --> 00:00:59,800
+The day AI stopped, humanity started again.
