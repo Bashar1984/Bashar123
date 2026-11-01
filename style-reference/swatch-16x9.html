@@ -1,0 +1,156 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>html,body{margin:0;padding:0;background:#F4EBDD}svg{display:block}</style>
+</head><body>
+<svg id="s" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<defs>
+  <!-- paper grain -->
+  <filter id="grain" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="4" result="n"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0.12  0 0 0 0 0.10  0 0 0 0 0.08  0 0 0 0.55 -0.18" />
+  </filter>
+  <filter id="fibers" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.012 0.5" numOctaves="2" seed="9"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.28  0 0 0 0 0.2  0 0 0 0.35 -0.12" />
+  </filter>
+  <!-- torn / rough paper edge -->
+  <filter id="torn" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="4" seed="2" result="t"/>
+    <feDisplacementMap in="SourceGraphic" in2="t" scale="22" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feDropShadow dx="7" dy="10" stdDeviation="7" flood-color="#202020" flood-opacity="0.32"/>
+  </filter>
+  <filter id="torn2" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="4" seed="7" result="t"/>
+    <feDisplacementMap in="SourceGraphic" in2="t" scale="16" xChannelSelector="R" yChannelSelector="G"/>
+    <feDropShadow dx="5" dy="8" stdDeviation="5" flood-color="#202020" flood-opacity="0.3"/>
+  </filter>
+  <filter id="tornMask" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" seed="2" result="t"/>
+    <feDisplacementMap in="SourceGraphic" in2="t" scale="20" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="3" seed="3" result="t"/>
+    <feDisplacementMap in="SourceGraphic" in2="t" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+    <feDropShadow dx="6" dy="9" stdDeviation="6" flood-color="#202020" flood-opacity="0.35"/>
+  </filter>
+  <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+    <feDropShadow dx="8" dy="12" stdDeviation="8" flood-color="#202020" flood-opacity="0.35"/>
+  </filter>
+  <!-- marker ink: slightly wobbly, dry-edged -->
+  <filter id="marker" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="5" result="t"/>
+    <feDisplacementMap in="SourceGraphic" in2="t" scale="3"/>
+  </filter>
+  <!-- archival photo texture: duotone mottled emulsion -->
+  <filter id="emulsion" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.009 0.016" numOctaves="5" seed="12" result="n"/>
+    <feColorMatrix in="n" type="saturate" values="0" result="g"/>
+    <feComponentTransfer in="g">
+      <feFuncR type="table" tableValues="0.1 0.1 0.35 0.75 0.97"/>
+      <feFuncG type="table" tableValues="0.1 0.1 0.33 0.72 0.93"/>
+      <feFuncB type="table" tableValues="0.1 0.1 0.30 0.66 0.87"/>
+    </feComponentTransfer>
+  </filter>
+  <filter id="emulsion2" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="turbulence" baseFrequency="0.008 0.03" numOctaves="4" seed="31" result="n"/>
+    <feColorMatrix in="n" type="saturate" values="0" result="g"/>
+    <feComponentTransfer in="g">
+      <feFuncR type="table" tableValues="0.13 0.18 0.3 0.7 0.96"/>
+      <feFuncG type="table" tableValues="0.13 0.3 0.61 0.82 0.92"/>
+      <feFuncB type="table" tableValues="0.13 0.33 0.66 0.84 0.87"/>
+    </feComponentTransfer>
+  </filter>
+  <pattern id="stripesCyan" width="56" height="56" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)">
+    <rect width="56" height="56" fill="#202020"/><rect width="26" height="56" fill="#4C9CA8"/>
+  </pattern>
+  <pattern id="stripesRed" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="40" height="40" fill="#F4EBDD"/><rect width="16" height="40" fill="#D83A2E"/>
+  </pattern>
+  <pattern id="dotsDark" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="rotate(15)">
+    <circle cx="11" cy="11" r="5.5" fill="#202020"/>
+  </pattern>
+  <pattern id="dotsPhoto" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <circle cx="4.5" cy="4.5" r="2.2" fill="#202020" opacity="0.45"/>
+  </pattern>
+  <clipPath id="photo1"><rect x="0" y="0" width="460" height="320"/></clipPath>
+  <clipPath id="photo2"><rect x="0" y="0" width="340" height="250"/></clipPath>
+</defs>
+<rect width="1920" height="1080" fill="#F4EBDD"/>
+<!-- background: halftone mustard clouds + red circle (left) -->
+<circle cx="1500" cy="190" r="170" fill="url(#dotsDark)" opacity=".18"/>
+<g filter="url(#rough)"><circle cx="560" cy="470" r="330" fill="#D83A2E"/></g>
+<g id="htCircle"></g>
+<!-- charcoal/cyan stripe field rising to the right -->
+<mask id="mStripes" maskUnits="userSpaceOnUse" x="-100" y="0" width="2200" height="1200">
+  <g filter="url(#tornMask)"><polygon points="900,1120 1990,520 1990,1120" fill="#fff"/></g>
+</mask>
+<g filter="url(#shadow)"><rect x="800" y="400" width="1250" height="800" fill="url(#stripesCyan)" mask="url(#mStripes)"/></g>
+<!-- mustard torn band sweeping left to right -->
+<g filter="url(#torn)"><polygon points="-80,820 1980,330 1980,560 -80,1040" fill="#F4C542"/></g>
+<g id="htBand"></g>
+<!-- ivory scrap with red stripes -->
+<mask id="mRed" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="1080">
+  <g filter="url(#tornMask)" transform="translate(1210 120) rotate(7)"><polygon points="0,0 360,-14 380,200 14,220" fill="#fff"/></g>
+</mask>
+<g filter="url(#shadow)"><rect x="1100" y="0" width="600" height="420" fill="url(#stripesRed)" mask="url(#mRed)"/></g>
+<!-- archival photo cutout 1 -->
+<g transform="translate(250 200) rotate(-5)" filter="url(#shadow)">
+  <rect x="-26" y="-26" width="512" height="372" fill="#FBF7EF"/>
+  <g clip-path="url(#photo1)"><rect width="460" height="320" filter="url(#emulsion)"/><rect width="460" height="320" fill="url(#dotsPhoto)"/></g>
+</g>
+<!-- archival photo cutout 2 -->
+<g transform="translate(1330 560) rotate(4)" filter="url(#shadow)">
+  <rect x="-22" y="-22" width="384" height="294" fill="#FBF7EF"/>
+  <g clip-path="url(#photo2)"><rect width="340" height="250" filter="url(#emulsion2)"/><rect width="340" height="250" fill="url(#dotsPhoto)"/></g>
+</g>
+<!-- circles -->
+<g filter="url(#rough)"><circle cx="1110" cy="760" r="120" fill="#202020"/></g>
+<g filter="url(#rough)"><circle cx="1110" cy="760" r="70" fill="#F4C542"/></g>
+<g filter="url(#rough)"><circle cx="1700" cy="300" r="85" fill="#4C9CA8"/></g>
+<circle cx="1700" cy="300" r="85" fill="url(#dotsDark)" opacity=".5"/>
+<!-- tape -->
+<g filter="url(#torn2)" transform="translate(560 170) rotate(24)"><rect width="200" height="56" fill="#4C9CA8" opacity=".92"/></g>
+<g filter="url(#torn2)" transform="translate(1590 520) rotate(-28)"><rect width="160" height="50" fill="#F4EBDD" opacity=".9"/></g>
+<!-- halftone patch -->
+<g transform="translate(180 760)"><g id="htPatch"></g></g>
+<!-- marker annotations: left-to-right flow -->
+<g filter="url(#marker)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M210,170 C420,90 760,130 780,300 C800,520 520,600 330,580 C170,560 150,380 190,270" stroke="#D83A2E" stroke-width="9"/>
+  <path d="M820,640 C980,560 1100,520 1280,560" stroke="#202020" stroke-width="9"/>
+  <path d="M1240,528 L1286,560 L1238,592" stroke="#202020" stroke-width="9"/>
+  <path d="M380,960 C520,930 650,960 780,925" stroke="#202020" stroke-width="18" opacity=".92"/>
+  <path d="M1000,240 l26,-26 l18,34 l26,-34 l18,34 l26,-34" stroke="#202020" stroke-width="7"/>
+  <path d="M1760,700 c26,0 26,30 26,60 l0,80 c0,30 0,50 -26,55" stroke="#F4C542" stroke-width="8"/>
+  <path d="M1360,880 C1460,860 1560,890 1680,862" stroke="#F4EBDD" stroke-width="8"/>
+  <path d="M1580,130 l36,30 M1616,130 l-36,30" stroke="#202020" stroke-width="8"/>
+</g>
+<rect width="1920" height="1080" filter="url(#fibers)" style="mix-blend-mode:multiply"/>
+<rect width="1920" height="1080" filter="url(#grain)" style="mix-blend-mode:multiply"/>
+</svg>
+<script>
+const NS="http://www.w3.org/2000/svg";
+function halftone(g,{x0,y0,w,h,step,maxR,color,angle,fn,clip}){
+  const el=document.getElementById(g);
+  const grp=document.createElementNS(NS,"g");
+  grp.setAttribute("transform",`rotate(${angle} ${x0+w/2} ${y0+h/2})`);
+  for(let y=y0;y<y0+h;y+=step)for(let x=x0;x<x0+w;x+=step){
+    if(clip&&!clip(x,y))continue;
+    const r=maxR*fn(x,y); if(r<0.6)continue;
+    const c=document.createElementNS(NS,"circle");
+    c.setAttribute("cx",x);c.setAttribute("cy",y);c.setAttribute("r",r.toFixed(2));c.setAttribute("fill",color);
+    grp.appendChild(c);}
+  el.appendChild(grp);
+}
+// circle: dark halftone fading from lower-right edge
+halftone("htCircle",{x0:220,y0:130,w:680,h:680,step:20,maxR:8,color:"#202020",angle:20,
+  fn:(x,y)=>Math.max(0,Math.min(1,((x-480)+(y-400))/460)),
+  clip:(x,y)=>Math.hypot(x-560,y-470)<318});
+// mustard band: red dots fading to the left
+halftone("htBand",{x0:-40,y0:300,w:2000,h:760,step:24,maxR:9,color:"#D83A2E",angle:0,
+  fn:(x,y)=>Math.max(0,Math.min(1,(x-700)/900)),
+  clip:(x,y)=>{const top=820-(x+80)*(490/2060)+22, bot=1040-(x+80)*(480/2060)-24; return y>top&&y<bot;}});
+// patch: radial halftone
+halftone("htPatch",{x0:0,y0:0,w:330,h:230,step:16,maxR:7,color:"#202020",angle:0,
+  fn:(x,y)=>Math.max(0,1-Math.hypot(x-60,y-200)/360)});
+</script>
+</body></html>

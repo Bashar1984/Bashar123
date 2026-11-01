@@ -8,7 +8,7 @@ const path = require('path'), fs = require('fs');
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 1920, height: 1080 } });
   p.on('pageerror', err => { console.error('PAGE ERROR', err.message); process.exit(1); });
-  await p.goto('file://' + path.resolve(__dirname, 'scene.html'));
+  await p.goto('file://' + path.resolve(__dirname, process.env.SCENE || 'scene2.html'));
   for (let f = s; f < e; f++) {
     await p.evaluate(t => render(t), f / 24);
     await p.screenshot({ path: path.join(out, String(f).padStart(5, '0') + '.jpg'), type: 'jpeg', quality: 93 });

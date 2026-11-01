@@ -439,12 +439,13 @@ function init() {
   for (let i = 0; i < 900; i++) { const x = r() * 2100, y = r() * 1260; g.lineWidth = .6 + r(); g.beginPath(); g.moveTo(x, y); g.lineTo(x + 20 + r() * 60, y + (r() - .5) * 6); g.stroke(); }
   document.getElementById('grain').setAttribute('href', cv.toDataURL('image/png'));
 }
-const BLOCKS = [B1, B2, B3, B4, B5, B6];
+let BLOCKS = [B1, B2, B3, B4, B5, B6];
 function render(t) {
   F = Math.round(t * FPS);
   const b = Math.min(5, Math.floor(t / 10)), u = t - b * 10;
   let s = BLOCKS[b](u);
-  if (b === 4 && u > 9.65) s += `<g opacity="${seg(u, 9.65, 10).toFixed(3)}">${B6(u - 10)}</g>`;
+  if (window.TRANS) s += TRANS(b, u);
+  else if (b === 4 && u > 9.65) s += `<g opacity="${seg(u, 9.65, 10).toFixed(3)}">${B6(u - 10)}</g>`;
   document.getElementById('scene').innerHTML = s;
   const gr = rng(Math.floor(F / 2) + 1);
   document.getElementById('grain').setAttribute('x', f1(-gr() * 170));
