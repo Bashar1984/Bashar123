@@ -1,0 +1,21 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>html,body{margin:0;padding:0;background:#F4EBDD;overflow:hidden}svg{display:block}</style></head>
+<body>
+<svg id="svg" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<defs>
+  <pattern id="dotsK" width="18" height="18" patternUnits="userSpaceOnUse" patternTransform="rotate(15)"><circle cx="9" cy="9" r="4.6" fill="#202020"/></pattern>
+  <pattern id="dotsY" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(20)"><circle cx="10" cy="10" r="5.5" fill="#F4C542"/></pattern>
+  <pattern id="dotsC" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(-10)"><circle cx="10" cy="10" r="5.5" fill="#4C9CA8"/></pattern>
+  <pattern id="dotsR" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><circle cx="10" cy="10" r="5" fill="#D83A2E"/></pattern>
+  <pattern id="winK" width="36" height="46" patternUnits="userSpaceOnUse"><rect x="8" y="8" width="16" height="22" fill="#202020"/></pattern>
+  <pattern id="winY" width="36" height="46" patternUnits="userSpaceOnUse"><rect x="8" y="8" width="16" height="22" fill="#F4C542"/></pattern>
+  <filter id="sh" x="-10%" y="-10%" width="125%" height="125%"><feDropShadow dx="7" dy="10" stdDeviation="7" flood-color="#202020" flood-opacity=".3"/></filter>
+</defs>
+<g id="scene"></g>
+<image href="grain.png" x="0" y="0" width="1920" height="1080" style="mix-blend-mode:multiply" opacity=".5"/>
+</svg>
+<script src="core.js"></script>
+<script src="scenes.js"></script>
+<script>render(0)</script>
+</body></html>
