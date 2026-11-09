@@ -14,6 +14,15 @@ const CAPS = [
   [],
 ];
 
+// retime caption windows to the ElevenLabs narration (voice.js: clip start/duration per scene)
+if (typeof VOICE !== 'undefined') CAPS.forEach((sc, i) => {
+  if (!sc.length) return;
+  const v = VOICE[i], w = sc.map(l => l[2].replace(/\*/g, '').length + 4), tot = w.reduce((a, b) => a + b, 0);
+  let t = v.start - .1;
+  sc.forEach((l, k) => { const d = v.dur * w[k] / tot; l[0] = t; l[1] = k === sc.length - 1 ? v.start + v.dur + .5 : t + d; t += d; });
+});
+const VS = i => (typeof VOICE !== 'undefined' ? VOICE[i] : { start: .4, dur: 8 });
+
 // ---------- small props ----------
 const person = (x, y, s, body, head = '#E9C7A1', extra = '') => `<g transform="translate(${f(x)} ${f(y)}) scale(${s})"><g stroke="${WH}" stroke-width="10" stroke-linejoin="round"><rect x="-46" y="-10" width="92" height="140" rx="38" fill="${body}"/><circle cx="0" cy="-52" r="38" fill="${head}"/></g>${extra}</g>`;
 const bolt = (x, y, s, col) => `<g transform="translate(${f(x)} ${f(y)}) scale(${s})">${poly([[20, -110], [-60, 20], [-5, 20], [-25, 110], [65, -30], [8, -30]], col, `stroke="${K}" stroke-width="8" stroke-linejoin="round"`)}</g>`;
@@ -24,7 +33,7 @@ const stampBox = (x, y, s, size, rot, col, p) => p <= 0 ? '' : `<g opacity="${cl
 
 // ---------- 1  THE SWITCH ----------
 function S1(u) {
-  const cx = 560, cy = 520, slam = 6.5, after = u > slam;
+  const cx = 560, cy = 520, slam = 9.3, after = u > slam;
   let g = '';
   const sh = u > slam && u < slam + .5 ? (1 - (u - slam) / .5) * 14 : 0;
   g += `<g transform="translate(${f(Math.sin(u * 90) * sh)} ${f(Math.cos(u * 70) * sh)})">`;
@@ -196,7 +205,7 @@ function S7(u) {
   const t = u - 3.6, v = u < 3.6 ? .07 + .025 * Math.sin(u * 14) : .4 + (.07 - .4) * Math.exp(-2.6 * t) * Math.cos(9 * t);
   const ang = Math.PI * (1 + v);
   g += `<g filter="url(#sh)"><line x1="${cx}" y1="${cy}" x2="${f(cx + Math.cos(ang) * (r - 20))}" y2="${f(cy + Math.sin(ang) * (r - 20))}" stroke="${K}" stroke-width="16" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="38" fill="${K}" stroke="${WH}" stroke-width="10"/></g>`;
-  g += stampBox(960, 700, 'PROBABLY NOT', 96, -4, K, pr(u, 4.2, 4.8));
+  g += stampBox(960, 700, 'PROBABLY NOT', 96, -4, K, pr(u, CAPS[6][1][0] + .15, CAPS[6][1][0] + .75));
   return g;
 }
 
@@ -305,8 +314,8 @@ function S12(u) {
   const rise = eOut(pr(u, 0, 3.4)), sy = lerp(1000, 640, rise);
   g += `<circle cx="960" cy="${f(sy)}" r="${f(260)}" fill="${R}"/><circle cx="960" cy="${f(sy)}" r="${f(350 + Math.sin(u * 1.4) * 8)}" fill="none" stroke="url(#dotsR)" stroke-width="80" opacity=".55"/>`;
   g += torn(-200, 1000, 2100, 930, 230, 77, K);
-  g += rich(960, 230, 'THE DAY AI STOPPED,', 112, u, .6, { stg: .12 });
-  g += rich(960, 400, '*HUMANITY* *STARTED* *AGAIN.*', 118, u, 3.2, { stg: .22 });
+  g += rich(960, 230, 'THE DAY AI STOPPED,', 112, u, VS(11).start, { stg: .1 });
+  g += rich(960, 400, '*HUMANITY* *STARTED* *AGAIN.*', 118, u, VS(11).start + VS(11).dur * .5, { stg: .2 });
   g += txt(960, 975, 'WHAT IF AI SUDDENLY STOPPED WORKING?', 30, { anchor: 'middle', mono: true, w: 800, fill: I, op: pr(u, 6, 7) });
   g += `<rect width="1920" height="1080" fill="${K}" opacity="${pr(u, 10.6, 11.9).toFixed(3)}"/>`;
   return g;

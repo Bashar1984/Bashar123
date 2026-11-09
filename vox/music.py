@@ -148,13 +148,13 @@ CFG = [
     None,
 ]
 
-SLAM = 6.5
+SLAM = 9.3
 for i in range(12):
     t0 = i * SCENE
     if i == 0:  # the switch: pad + accelerating ticks, then slam and drone
-        for b in range(3):
+        for b in range(4):
             c = MIN[b % 4]
-            pad(c['ch'], t0 + b * BAR, BAR + .6, .6 * .07 * 8)
+            pad(c['ch'], t0 + b * BAR, min(BAR + .6, SLAM - b * BAR + .05), .6 * .07 * 8)
         dt, t = 1.0, SLAM
         while t > .4:
             t -= dt
@@ -163,9 +163,9 @@ for i in range(12):
             thump(SLAM - 2.4 + k * (.6 - k * .06), .22, 80, 35)
         riser(SLAM - 2.2, 2.2, .1)
         thump(SLAM, .95, 120, 26)
-        tt_ = tt(5.4)
-        add(np.sin(2 * np.pi * 55 * tt_) * .1 * np.minimum(1, tt_ / 1.5) * np.minimum(1, (5.4 - tt_) / .8), SLAM + .6, 0)
-        add(np.sin(2 * np.pi * 110.4 * tt_) * .05 * np.minimum(1, tt_ / 2.5) * np.minimum(1, (5.4 - tt_) / .8), SLAM + .6, 0)
+        tt_ = tt(3.2)
+        add(np.sin(2 * np.pi * 55 * tt_) * .1 * np.minimum(1, tt_ / 1.5) * np.minimum(1, (3.2 - tt_) / .8), SLAM + .6, 0)
+        add(np.sin(2 * np.pi * 110.4 * tt_) * .05 * np.minimum(1, tt_ / 2.5) * np.minimum(1, (3.2 - tt_) / .8), SLAM + .6, 0)
         continue
     if i == 6:  # collapse?: suspense, then relief at 'probably not'
         for b in range(5):
